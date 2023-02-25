@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <iframe></iframe>
+    <input id="fileInput" type="file">
+</body>
+<script>
+    // Data URL是将图片转换为base64直接嵌入到了网页中，使用<img src="data:[MIME type];base64"/>这种方式引用图片，不需要再发请求获取图片。
+    // 使用Data URL也有一些缺点：
+
+    // base64编码后的图片会比原来的体积大三分之一左右。
+    // Data URL形式的图片不会缓存下来，每次访问页面都要被下载一次。可以将Data URL写入到CSS文件中随着CSS被缓存下来。
+    // 创建blob与file
+    // 接收两个参数是文件内容与类型(可选)
+    const blob = new Blob(["Hello World"]);
+    console.log(blob)
+    const iframe = document.getElementsByTagName("iframe")[0]
+    iframe.src = URL.createObjectURL(blob)
+    console.log(iframe)
+
+    // file必选两个参数 内容与文件名
+    const file = new File(["Hello World"], 'hello-world.txt')
+    console.log(file)
+    // 读取文件
+    const fileInput = document.getElementById("fileInput");
+    const reader = new FileReader();
+    fileInput.onchange = (e)=>{
+        // reader.readAsText(e.target.files[0])
+        reader.readAsArrayBuffer(e.target.files[0]);
+        // reader.readAsDataURL(e.target.files[0])
+    }
+    reader.onload = (e)=>{
+        console.log(e.target.result)
+        const dv = new DataView(e.target.result)
+        console.log(dv)
+    }
+</script>
+</html>
