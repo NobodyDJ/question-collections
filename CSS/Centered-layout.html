@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container container1">
+        <div class="item1" style="width: 100px; height: 100px; background: #999;">
+            块状元素
+        </div>
+    </div>
+
+    <div class="container container2">
+        <div class="item2">不定高宽的块状元素</div>
+    </div>
+
+    <div class="container container3">
+        <span class="item3">行内元素</span>
+    </div>
+</body>
+<style>
+    /* 下面这个方法比较通用行内元素与块状元素都可以用 */
+
+    /* .container1 {
+        display: flex;
+    }
+
+    .item1 {
+        margin: auto;
+    } */
+    /* 元素的宽高固定时，在将元素绝对定位为top: 50%; left: 50%;后，可以使用值为宽的一半和高的一半的负margin实现垂直水平居中 */
+    .container1 {
+        position: relative;
+    }
+
+    .container1 .item1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        margin: -50px 0 0 -50px;
+    }
+
+    .container2 {
+        position: relative;
+    }
+
+    /* 当元素宽高不确定的，行内元素 */
+    .item2 {
+        background: #999;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .container3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item3 {}
+
+    .container {
+        height: 200px;
+        background: #ccc;
+        margin: 5px;
+    }
+</style>
+
+</html>

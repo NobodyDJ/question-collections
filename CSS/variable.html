@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span class="first">1123</span>
+    <div class="box"></div>
+</body>
+<style>
+    :root{
+        --bgcolor: blue;
+        --bgcolor2: pink;
+    }
+    .first{
+        background: var(--bgcolor);
+    }
+    /* 在使用媒体查询时，可以使用css变量减少代码冗余 */
+    .box {
+        --base-size: 10;
+        width: calc(var(--base-size)* 10px);
+        height: calc(var(--base-size)* 5px);
+        padding:calc(var(--base-size) * 1px);
+        background:var(--bgcolor)
+    }
+    @media screen and (max-width: 1480px) {
+        .box{
+            width: calc(var(--base-size) * 1px);
+            background:var(--bgcolor2);
+        }
+    }
+</style>
+</html>
